@@ -1,4 +1,4 @@
-const Nodo = require("../src/Node.js");
+const Nodo = require("../src/Nodo.js");
 
 const attention1 = new Nodo ({
     fecha:"02/02",
@@ -29,17 +29,26 @@ const cabeza = attention1;
 
 let actual = cabeza;
 
-while (actual !== null ){
-    console.log ('Nodo:', actual);
-    actual = actual.siguientes;
+while (actual !== null) {
+    console.log(actual.dato.fecha, "|", actual.dato.motivo, "|", actual.dato.veterinario, "|", "$" + actual.dato.costo.toLocaleString("es-CO"));
+    actual = actual.siguiente;
 }
 
-let i = 0;
+let total = 0;
 actual = cabeza;
 
-while (actual !== null){
-    i += actual.dato.costo;
-    actual = actual.siguientes;
+while (actual !== null) {
+    total += actual.dato.costo;
+    actual = actual.siguiente;
 }
 
-console.log('Costo total de atenciones: $', i);
+console.log("Costo total de atenciones: $" + total.toLocaleString("es-CO"));
+
+console.log("\nLost link demo:");
+attention1.siguiente = null;
+actual = cabeza;
+
+while (actual !== null) {
+    console.log(actual.dato.fecha, "|", actual.dato.motivo);
+    actual = actual.siguiente;
+}
